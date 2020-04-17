@@ -4,23 +4,24 @@
 #include<iomanip>
 #include<stdlib.h>
 using namespace std;
+//双向链表节点类
 class element
 {
 public:
-	int id;
-	char name[20];
-	int score;
-	element* prec;
-	element* next;
+	int id;                    //学号
+	char name[20];             //姓名
+	int score;                 //成绩
+	element* prec;             //直接前驱
+	element* next;             //直接后继
 };
-
+//头指针类
 class head
 {
 public:
-	element* first;
-	int length;
+	element* first;            //头指针
+	int length;                //链表长度
 };
-
+//element数据域交换
 void swap(element* temp1, element* temp2)
 {
 	int t_id = 0, t_score = 0;
@@ -69,7 +70,7 @@ public:
 		delete head_ptr.first;
 	};
 };
-
+//建立链表
 template<class element, class head>
 bool double_link_list<element, head>::set(element data)
 {
@@ -101,7 +102,7 @@ bool double_link_list<element, head>::set(element data)
 	sort(head_ptr.first, tail);
 	return true;
 }
-
+//根据学号查找
 template<class element, class head>
 bool double_link_list<element, head>::find(element& result, int id)
 {
@@ -112,7 +113,7 @@ bool double_link_list<element, head>::find(element& result, int id)
 	result = explore;
 	return true;
 }
-
+//根据姓名查找
 template<class element, class head>
 bool double_link_list<element, head>::find(element& result, char* name)
 {
@@ -123,7 +124,7 @@ bool double_link_list<element, head>::find(element& result, char* name)
 	result = explore;
 	return true;
 }
-
+//修改学号
 template<class element, class head>
 void double_link_list<element, head>::modify(element* temp, int new_id)
 {
@@ -132,7 +133,7 @@ void double_link_list<element, head>::modify(element* temp, int new_id)
 	explore->id = new_id;
 	return;
 }
-
+//修改姓名
 template<class element, class head>
 void double_link_list<element, head>::modify(element* temp, char* new_name)
 {
@@ -141,7 +142,7 @@ void double_link_list<element, head>::modify(element* temp, char* new_name)
 	strcpy(explore->name, new_name);
 	return;
 }
-
+//修改成绩
 template<class element, class head>
 void double_link_list<element, head>::modify(int new_score, element* temp)
 {
@@ -202,7 +203,7 @@ void double_link_list<element, head>::insert(element* new_element)
 	head_ptr.length++;
 	return;
 }
-
+//根据成绩从大到小排序
 template<class element, class head>
 void double_link_list<element, head>::sort(element* Head, element* tail)
 {
@@ -223,16 +224,12 @@ void double_link_list<element, head>::sort(element* Head, element* tail)
 			swap(temp1, temp2);
 		}
 	}
-	/*
-	执行while完毕后的情况：
-	key在Head,[Head->next,temp1]大于key,[temp2->next,tail]小于key
-	*/
 	swap(Head, temp1);
 	sort(Head, key);
 	sort(temp1->next, tail);
 	return;
 }
-
+//全删
 template<class element, class head>
 void double_link_list<element, head>::all_del()
 {
@@ -246,7 +243,7 @@ void double_link_list<element, head>::all_del()
 	delete temp;
 	all_del();
 }
-
+//总览
 template<class element, class head>
 void double_link_list<element, head>::view()
 {
