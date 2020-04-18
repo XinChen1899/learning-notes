@@ -131,8 +131,7 @@ element* double_link_list<element, head>::find(char* name)
 template<class element, class head>
 void double_link_list<element, head>::modify(element* temp, int new_id)
 {
-	element* explore = head_ptr.first;
-	for (; explore != temp; explore = explore->next);
+	element* explore = temp;
 	explore->id = new_id;
 	return;
 }
@@ -140,8 +139,7 @@ void double_link_list<element, head>::modify(element* temp, int new_id)
 template<class element, class head>
 void double_link_list<element, head>::modify(element* temp, char* new_name)
 {
-	element* explore = head_ptr.first;
-	for (; explore != temp; explore = explore->next);
+	element* explore = temp;
 	strcpy(explore->name, new_name);
 	return;
 }
@@ -149,8 +147,7 @@ void double_link_list<element, head>::modify(element* temp, char* new_name)
 template<class element, class head>
 void double_link_list<element, head>::modify(int new_score, element* temp)
 {
-	element* explore = head_ptr.first;
-	for (; explore != temp; explore = explore->next);
+	element* explore = temp;
 	explore->score = new_score;
 	sort(head_ptr.first, tail);
 	return;
@@ -159,20 +156,19 @@ void double_link_list<element, head>::modify(int new_score, element* temp)
 template<class element, class head>
 void double_link_list<element, head>::del(element* temp)
 {
-	element* explore = head_ptr.first, * p = explore->prec, * n = explore->next;
-	for (; explore != temp; explore = explore->next, p = explore->prec, n = explore->next);
+	element* explore = temp;
 	if (explore == tail)
 	{
-		tail = p;
+		tail = explore->prec;
 	}
 	else if (explore == head_ptr.first)
 	{
-		head_ptr.first = n;
+		head_ptr.first = explore->next;
 	}
 	else
 	{
-		p->next = n;
-		n->prec = p;
+		explore->prec->next = explore->next;
+		nexplore->ext->prec = explore->prec;
 	}
 	delete explore;
 	head_ptr.length--;
@@ -300,13 +296,13 @@ int main()
 	bool check = 0;
 	double_link_list<element, head> run;
 	system("pause");
-	cout << "第" << 1 << "个学生:\n";
+	cout << "第" << 1 << "个学生(学号为0时结束):\n";
 	cin >> data.id >> data.name >> data.score;
 	check = run.set(data);
 	while (check && data.id != 0)
 	{
 		n++;
-		cout << "第" << n << "个学生:\n";
+		cout << "第" << n << "个学生(学号为0时结束):\n";
 		cin >> data.id >> data.name >> data.score;
 		check = run.set(data);
 	}
