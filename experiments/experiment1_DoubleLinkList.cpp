@@ -172,7 +172,7 @@ void double_link_list<element, head>::del(element* temp)
 	else
 	{
 		explore->prec->next = explore->next;
-		nexplore->ext->prec = explore->prec;
+		explore->next->prec = explore->prec;
 	}
 	delete explore;
 	head_ptr.length--;
