@@ -4,24 +4,23 @@
 #include<iomanip>
 #include<stdlib.h>
 using namespace std;
-//双向链表节点类
 class element
 {
 public:
-	int id;                    //学号
-	char name[20];             //姓名
-	int score;                 //成绩
-	element* prec;             //直接前驱
-	element* next;             //直接后继
+	int id;
+	char name[20];
+	int score;
+	element* prec;
+	element* next;
 };
-//头指针类
+
 class head
 {
 public:
-	element* first;            //头指针
-	int length;                //链表长度
+	element* first;
+	int length;
 };
-//element数据域交换
+
 void swap(element* temp1, element* temp2)
 {
 	int t_id = 0, t_score = 0;
@@ -54,8 +53,8 @@ public:
 		tail = NULL;
 	};
 	bool set(element);
-	bool find(element&, int);
-	bool find(element&, char*);
+	element* find(int);
+	element* find(char*);
 	void modify(element*, int);
 	void modify(element*, char*);
 	void modify(int, element*);
@@ -67,16 +66,15 @@ public:
 	~double_link_list()
 	{
 		all_del();
-		delete head_ptr.first;
 	};
 };
-//建立链表
+
 template<class element, class head>
 bool double_link_list<element, head>::set(element data)
 {
 	if (data.id == 0)
 	{
-		if (head_ptr.first = NULL)
+		if (head_ptr.first == NULL)
 			return false;
 		return true;
 	}
@@ -85,7 +83,7 @@ bool double_link_list<element, head>::set(element data)
 	temp->id = data.id;
 	strcpy(temp->name, data.name);
 	temp->score = data.score;
-	if (head_ptr.first = NULL)
+	if (head_ptr.first == NULL)
 	{
 		head_ptr.first = temp;
 		temp->prec = NULL;
@@ -97,34 +95,39 @@ bool double_link_list<element, head>::set(element data)
 		temp->prec = tail;
 		temp->next = NULL;
 		tail->next = temp;
+		tail = temp;
 	}
 	head_ptr.length++;
 	sort(head_ptr.first, tail);
 	return true;
 }
-//根据学号查找
+
 template<class element, class head>
-bool double_link_list<element, head>::find(element& result, int id)
+element* double_link_list<element, head>::find(int id)
 {
 	element* explore = head_ptr.first;
-	for (; explore->id != id; explore = explore->next);
-	if (explore = NULL)
-		return false;
-	result = explore;
-	return true;
+	while (explore != NULL)
+	{
+		if (explore->id == id)
+			break;
+		explore = explore->next;
+	}
+	return explore;
 }
-//根据姓名查找
+
 template<class element, class head>
-bool double_link_list<element, head>::find(element& result, char* name)
+element* double_link_list<element, head>::find(char* name)
 {
 	element* explore = head_ptr.first;
-	for (; !strcmp(explore->name, name); explore = explore->next);
-	if (explore = NULL)
-		return false;
-	result = explore;
-	return true;
+	while (explore != NULL)
+	{
+		if (!strcmp(explore->name, name))
+			break;
+		explore = explore->next;
+	}
+	return explore;
 }
-//修改学号
+
 template<class element, class head>
 void double_link_list<element, head>::modify(element* temp, int new_id)
 {
@@ -133,7 +136,7 @@ void double_link_list<element, head>::modify(element* temp, int new_id)
 	explore->id = new_id;
 	return;
 }
-//修改姓名
+
 template<class element, class head>
 void double_link_list<element, head>::modify(element* temp, char* new_name)
 {
@@ -142,13 +145,13 @@ void double_link_list<element, head>::modify(element* temp, char* new_name)
 	strcpy(explore->name, new_name);
 	return;
 }
-//修改成绩
+
 template<class element, class head>
 void double_link_list<element, head>::modify(int new_score, element* temp)
 {
 	element* explore = head_ptr.first;
 	for (; explore != temp; explore = explore->next);
-	explore->id = new_score;
+	explore->score = new_score;
 	sort(head_ptr.first, tail);
 	return;
 }
@@ -157,7 +160,7 @@ template<class element, class head>
 void double_link_list<element, head>::del(element* temp)
 {
 	element* explore = head_ptr.first, * p = explore->prec, * n = explore->next;
-	for (; explore != temp; explore = explore->next, *p = explore->prec, *n = explore->next);
+	for (; explore != temp; explore = explore->next, p = explore->prec, n = explore->next);
 	if (explore == tail)
 	{
 		tail = p;
@@ -180,7 +183,14 @@ template<class element, class head>
 void double_link_list<element, head>::insert(element* new_element)
 {
 	element* explore = head_ptr.first, * p = explore->prec;
-	for (; new_element->score < explore->score; explore = explore->next, *p = explore->prec);
+	while (explore != NULL)
+	{
+		if (new_element->score < explore->score)
+		{
+			break;
+		}
+		explore = explore->next, p = explore->prec;
+	}
 	if (explore == head_ptr.first)
 	{
 		new_element->next = explore;
@@ -192,6 +202,7 @@ void double_link_list<element, head>::insert(element* new_element)
 		new_element->prec = p;
 		p->next = new_element;
 		tail = new_element;
+		tail->next = NULL;
 	}
 	else
 	{
@@ -203,7 +214,7 @@ void double_link_list<element, head>::insert(element* new_element)
 	head_ptr.length++;
 	return;
 }
-//根据成绩从大到小排序
+
 template<class element, class head>
 void double_link_list<element, head>::sort(element* Head, element* tail)
 {
@@ -224,12 +235,16 @@ void double_link_list<element, head>::sort(element* Head, element* tail)
 			swap(temp1, temp2);
 		}
 	}
+	/*
+	执行while完毕后的情况：
+	key在Head,[Head->next,temp1]大于key,[temp2->next,tail]小于key
+	*/
 	swap(Head, temp1);
 	sort(Head, key);
 	sort(temp1->next, tail);
 	return;
 }
-//全删
+
 template<class element, class head>
 void double_link_list<element, head>::all_del()
 {
@@ -243,7 +258,7 @@ void double_link_list<element, head>::all_del()
 	delete temp;
 	all_del();
 }
-//总览
+
 template<class element, class head>
 void double_link_list<element, head>::view()
 {
@@ -276,7 +291,7 @@ void double_link_list<element, head>::view()
 int main()
 {
 	cout << "------------------Hello World------------------\n";
-	int choice = 0, n = 0;
+	int choice = 0, n = 1;
 	element data;
 	element* new_element, * result;
 	new_element = result = NULL;
@@ -285,24 +300,26 @@ int main()
 	bool check = 0;
 	double_link_list<element, head> run;
 	system("pause");
-	while (check)
+	cout << "第" << 1 << "个学生:\n";
+	cin >> data.id >> data.name >> data.score;
+	check = run.set(data);
+	while (check && data.id != 0)
 	{
 		n++;
 		cout << "第" << n << "个学生:\n";
 		cin >> data.id >> data.name >> data.score;
 		check = run.set(data);
 	}
-	system("cls");
 	while (true)
 	{
 		system("pause");
+		system("cls");
 		cout << "|  1、查找   |\n";
 		cout << "|  2、修改   |\n";
 		cout << "|  3、删除   |\n";
 		cout << "|  4、添加   |\n";
 		cout << "|  5、总览   |\n";
-		cout << "|  6、全删   |\n";
-		cout << "|  7、退出   |\n";
+		cout << "|  0、退出   |\n";
 		cout << "请选择：";
 		cin >> choice;
 		switch (choice)
@@ -315,7 +332,8 @@ int main()
 			case choose_id:
 				cout << "学号：";
 				cin >> find_id;
-				if (!run.find(*result, find_id))
+				result = run.find(find_id);
+				if (!result)
 				{
 					cout << "不存在！！\n";
 					break;
@@ -325,7 +343,8 @@ int main()
 			case choose_name:
 				cout << "姓名：";
 				cin >> find_name;
-				if (!run.find(*result, find_name))
+				result = run.find(find_name);
+				if (!result)
 				{
 					cout << "不存在！！\n";
 					break;
@@ -345,7 +364,8 @@ int main()
 			case choose_id:
 				cout << "学号：";
 				cin >> find_id;
-				if (!run.find(*result, find_id))
+				result = run.find(find_id);
+				if (!result)
 				{
 					cout << "不存在！！\n";
 					break;
@@ -354,7 +374,8 @@ int main()
 			case choose_name:
 				cout << "姓名：";
 				cin >> find_name;
-				if (!run.find(*result, find_name))
+				result = run.find(find_name);
+				if (!result)
 				{
 					cout << "不存在！！\n";
 					break;
@@ -399,7 +420,8 @@ int main()
 			case choose_id:
 				cout << "学号：";
 				cin >> find_id;
-				if (!run.find(*result, find_id))
+				result = run.find(find_id);
+				if (!result)
 				{
 					cout << "不存在！！\n";
 					break;
@@ -408,7 +430,8 @@ int main()
 			case choose_name:
 				cout << "姓名：";
 				cin >> find_name;
-				if (!run.find(*result, find_name))
+				result = run.find(find_name);
+				if (!result)
 				{
 					cout << "不存在！！\n";
 					break;
@@ -423,16 +446,13 @@ int main()
 			break;
 		case choose_insert:
 			cout << "请输入新学生的信息：";
+			new_element = new element;
 			cin >> new_element->id >> new_element->name >> new_element->score;
 			run.insert(new_element);
 			cout << "成功！\n";
 			break;
 		case choose_view:
 			run.view();
-			break;
-		case choose_all_del:
-			run.all_del();
-			cout << "成功！\n";
 			break;
 		Error:
 			if (choice == choose_exit)
