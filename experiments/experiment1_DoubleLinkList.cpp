@@ -4,23 +4,24 @@
 #include<iomanip>
 #include<stdlib.h>
 using namespace std;
+//链表节点类
 class element
 {
 public:
 	int id;
 	char name[20];
 	int score;
-	element* prec;
-	element* next;
+	element* prec;   //直接前驱
+	element* next;   //直接后继
 };
-
+//头指针类
 class head
 {
 public:
 	element* first;
 	int length;
 };
-
+//节点数据域交换函数
 void swap(element* temp1, element* temp2)
 {
 	int t_id = 0, t_score = 0;
@@ -38,14 +39,15 @@ void swap(element* temp1, element* temp2)
 	temp1->score = temp2->score;
 	temp2->score = t_score;
 }
-
+//双向链表操作类
 template<class element, class head>
 class double_link_list
 {
 private:
-	head head_ptr;
-	element* tail;
+	head head_ptr;       //头指针
+	element* tail;       //尾指针
 public:
+	//构造函数
 	double_link_list()
 	{
 		head_ptr.first = NULL;
@@ -63,15 +65,17 @@ public:
 	void sort(element*, element*);
 	void all_del();
 	void view();
+	//析构函数
 	~double_link_list()
 	{
 		all_del();
 	};
 };
-
+//建立链表
 template<class element, class head>
 bool double_link_list<element, head>::set(element data)
 {
+	//当id为0时结束建立
 	if (data.id == 0)
 	{
 		if (head_ptr.first == NULL)
@@ -101,7 +105,7 @@ bool double_link_list<element, head>::set(element data)
 	sort(head_ptr.first, tail);
 	return true;
 }
-
+//根据id查找
 template<class element, class head>
 element* double_link_list<element, head>::find(int id)
 {
@@ -114,7 +118,7 @@ element* double_link_list<element, head>::find(int id)
 	}
 	return explore;
 }
-
+//根据name查找
 template<class element, class head>
 element* double_link_list<element, head>::find(char* name)
 {
@@ -127,7 +131,7 @@ element* double_link_list<element, head>::find(char* name)
 	}
 	return explore;
 }
-
+//修改指定学生的id
 template<class element, class head>
 void double_link_list<element, head>::modify(element* temp, int new_id)
 {
@@ -135,7 +139,7 @@ void double_link_list<element, head>::modify(element* temp, int new_id)
 	explore->id = new_id;
 	return;
 }
-
+//修改指定学生的name
 template<class element, class head>
 void double_link_list<element, head>::modify(element* temp, char* new_name)
 {
@@ -143,7 +147,7 @@ void double_link_list<element, head>::modify(element* temp, char* new_name)
 	strcpy(explore->name, new_name);
 	return;
 }
-
+//修改指定学生的score
 template<class element, class head>
 void double_link_list<element, head>::modify(int new_score, element* temp)
 {
@@ -152,7 +156,7 @@ void double_link_list<element, head>::modify(int new_score, element* temp)
 	sort(head_ptr.first, tail);
 	return;
 }
-
+//删除指定学生
 template<class element, class head>
 void double_link_list<element, head>::del(element* temp)
 {
@@ -174,7 +178,7 @@ void double_link_list<element, head>::del(element* temp)
 	head_ptr.length--;
 	return;
 }
-
+//添加学生
 template<class element, class head>
 void double_link_list<element, head>::insert(element* new_element)
 {
@@ -210,7 +214,7 @@ void double_link_list<element, head>::insert(element* new_element)
 	head_ptr.length++;
 	return;
 }
-
+//根据成绩降序排序
 template<class element, class head>
 void double_link_list<element, head>::sort(element* Head, element* tail)
 {
@@ -231,16 +235,12 @@ void double_link_list<element, head>::sort(element* Head, element* tail)
 			swap(temp1, temp2);
 		}
 	}
-	/*
-	执行while完毕后的情况：
-	key在Head,[Head->next,temp1]大于key,[temp2->next,tail]小于key
-	*/
 	swap(Head, temp1);
 	sort(Head, key);
 	sort(temp1->next, tail);
 	return;
 }
-
+//全部删
 template<class element, class head>
 void double_link_list<element, head>::all_del()
 {
@@ -254,7 +254,7 @@ void double_link_list<element, head>::all_del()
 	delete temp;
 	all_del();
 }
-
+//总览
 template<class element, class head>
 void double_link_list<element, head>::view()
 {
@@ -287,16 +287,17 @@ void double_link_list<element, head>::view()
 int main()
 {
 	cout << "------------------Hello World------------------\n";
-	int choice = 0, n = 1;
-	element data;
-	element* new_element, * result;
+	int choice = 0, n = 1;                                      //choice用来做选择
+	element data;                                               //用于建立链表的数据域
+	element* new_element, * result;                             //分别用来建立新学生和查找学生
 	new_element = result = NULL;
-	int find_id = 0, new_id = 0, new_score = 0;
-	char find_name[20] = { '\0' }, new_name[20] = { '\0' };
-	bool check = 0;
-	double_link_list<element, head> run;
+	int find_id = 0, new_id = 0, new_score = 0;                 //分别为查找指定id，修改后id，修改后score
+	char find_name[20] = { '\0' }, new_name[20] = { '\0' };     //分别为查找指定name，修改后name
+	bool check = 0;                                             //用来判断链表建立进程是否结束
+	double_link_list<element, head> run;                        //构造对象
+	//开始构造链表
 	system("pause");
-	cout << "第" << 1 << "个学生(学号为0时结束):\n";
+	cout << "第1个学生(学号为0时结束):\n";
 	cin >> data.id >> data.name >> data.score;
 	check = run.set(data);
 	while (check && data.id != 0)
@@ -306,6 +307,7 @@ int main()
 		cin >> data.id >> data.name >> data.score;
 		check = run.set(data);
 	}
+	//操作
 	while (true)
 	{
 		system("pause");
