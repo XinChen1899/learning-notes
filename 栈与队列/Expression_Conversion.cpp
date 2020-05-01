@@ -5,6 +5,7 @@ using namespace std;
 
 typedef char element;
 
+//堆栈类
 template<class element>
 class stack
 {
@@ -58,6 +59,7 @@ bool stack <element>::get_top(element& temp)
 	temp = stack_element[top];
 	return true;
 }
+
 //表达式转换类
 class expression
 {
