@@ -6,3 +6,4 @@
 * 栈与队列
   * [堆栈基础](https://github.com/chenxin18307382228/The-Experiments-of-DataStructure/blob/master/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/stack.cpp)
   * [表达式转换](https://github.com/chenxin18307382228/The-Experiments-of-DataStructure/blob/master/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/Expression_Conversion.cpp)
+  * [链式堆栈](https://github.com/chenxin18307382228/The-Experiments-of-DataStructure/blob/master/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/linked_stack.cpp)
