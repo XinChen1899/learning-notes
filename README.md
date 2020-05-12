@@ -1,9 +1,9 @@
-# 数据结构实验
-## 目录
+# LEARNING NOTES
+## [数据结构](https://github.com/chenxin18307382228/learning-notes/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
 * 线性表
   * [单链表](https://github.com/chenxin18307382228/The-Experiments-of-DataStructure/blob/master/%E7%BA%BF%E6%80%A7%E8%A1%A8/simple_linked_list.cpp)
   * [双向链表](https://github.com/chenxin18307382228/The-Experiments-of-DataStructure/blob/master/%E7%BA%BF%E6%80%A7%E8%A1%A8/double_linked_list.cpp)
 * 栈与队列
   * [堆栈基础](https://github.com/chenxin18307382228/The-Experiments-of-DataStructure/blob/master/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/stack.cpp)
-  * [表达式转换](https://github.com/chenxin18307382228/The-Experiments-of-DataStructure/blob/master/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/Expression_Conversion.cpp)
+  * [表达式转换](https://github.com/chenxin18307382228/The-Experiments-of-NOTESDataStructure/blob/master/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/Expression_Conversion.cpp)
   * [链式堆栈](https://github.com/chenxin18307382228/The-Experiments-of-DataStructure/blob/master/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/linked_stack.cpp)
