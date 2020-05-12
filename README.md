@@ -1,6 +1,6 @@
 # LEARNING NOTES
 ## 目录
-* 数据结构
+* [数据结构]((https://github.com/chenxin18307382228/learning-notes/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84))
 * [八皇后问题](https://github.com/chenxin18307382228/learning-notes/blob/master/eight_queen.cpp)
 * [学生信息管理系统](https://github.com/chenxin18307382228/Simple-Student-Information-Manager)
 ## [数据结构](https://github.com/chenxin18307382228/learning-notes/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
