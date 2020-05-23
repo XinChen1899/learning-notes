@@ -4,6 +4,7 @@ using namespace std;
 
 typedef char element;
 
+template<class element>
 class queue
 {
 	private:
@@ -22,14 +23,16 @@ class queue
 		~queue() { delete[]list;};
 };
 
-queue::queue(int msize)
+template<class element>
+queue::queue<element>(int msize)
 {
 	max_size = msize;
 	list = new element[max_size];
 	fron = rear = 0;
 }
 
-bool queue::get_fron(element &temp)
+template<class element>
+bool queue<element>::get_fron(element &temp)
 {
 	if (isempty())
 	    return false;
@@ -37,7 +40,8 @@ bool queue::get_fron(element &temp)
 	return true;
 }
 
-bool queue::get_rear(element &temp)
+template<class element>
+bool queue<element>::get_rear(element &temp)
 {
 	if (isempty())
 	    return false;
@@ -45,7 +49,8 @@ bool queue::get_rear(element &temp)
 	return true;
 }
 
-bool queue::enqueue(element& temp)
+template<class element>
+bool queue<element>::enqueue(element& temp)
 {
 	if (isfull())
 	    return false;
@@ -59,7 +64,8 @@ bool queue::enqueue(element& temp)
 	return true;
 }
 
-bool queue::dequeue(element& temp)
+template<class element>
+bool queue<element>::dequeue(element& temp)
 {
 	if (isempty())
 	    return false;
