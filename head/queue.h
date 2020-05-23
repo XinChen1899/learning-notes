@@ -52,7 +52,10 @@ bool queue::enqueue(element& temp)
 	if (isempty())
 		list[fron] = temp;
 	else
-		list[++rear] = temp;
+	{
+		rear = (rear + 1) % max_size;
+		list[rear] = temp;
+	}
 	return true;
 }
 
@@ -60,6 +63,7 @@ bool queue::dequeue(element& temp)
 {
 	if (isempty())
 	    return false;
-	temp = list[fron++];
+	temp = list[fron];
+	fron = (fron + 1) % max_size;
 	return true;
 }
