@@ -1,103 +1,54 @@
-#include<cstring>
 #include<iostream>
-#include<stdio.h>
+#include<cstring>
 using namespace std;
 
-typedef char elementdata;
+typedef char element;
 
-typedef struct element
+class stack
 {
-	elementdata data;
-	element* link;
-}student;
-
-template<class element>
-class linked_list
-{
-	private:
-		element* head;
-		element* tail;
-		int length;
-		element* list;
-		element* prec;
-	public:
-		linked_list();
-		bool get_element(int, element&);
-		bool del_element(int, element&);
-		void insert_element(elementdata&);
-		bool modify_element(int, elementdata&);
-		~linked_list();
+private:
+	int stack_size;               //堆栈的最大长度
+	int top;                      //栈顶坐标
+	element* stack_element;       //堆栈存储池
+public:
+	stack(int);
+	bool isempty() { return top == -1; };                //判断堆栈是否为空
+	bool isfull() { return top >= stack_size - 1; };     //判断堆栈是否已满
+	bool push(element&);                                 //向堆栈压入元素
+	bool pop(element&);                                  //从堆栈弹出元素
+	bool get_top(element&);                              //取到栈顶元素的值
+	~stack() { delete[] stack_element; };
 };
 
-template<class element>
-linked_list<element>::linked_list()
+stack::stack(int max_size)
 {
-	length = 0;
-	head = new element;
-	tail = head;
+	stack_size = max_size;
+	top = -1;
+	stack_element = new element[stack_size];
 }
 
-template<class element>
-void linked_list<element>::insert_element(elementdata& temp)
+bool stack::push(element& temp)
 {
-	if (length == 0)
-		head->data = temp;
-	list = new element;
-	list->data = temp;
-    tail->next = list;
-    tail = list;
-    tail->next = NULL;
-    length++;
-    return;
-}
-
-template<class element>
-bool linked_list<element>::get_element(int k, element& temp)
-{
-	if (k >= length)
-	    return false;
-	list = head, prec = head;
-	for (int i = 0; i < k; i++)
-	{
-		prec = list;
-		list = list->next;
-	}
-	temp = list;
+	if (isfull())
+		return false;
+	top++;
+	stack_element[top] = temp;
 	return true;
 }
 
-template<class element>
-bool linked_list<element>::del_element(int k, element& temp)
+bool stack::pop(element& temp)
 {
-	if (!get_element(k, temp))
-	    return false;
-	prec->next = list->next;
-	if (tail == list)
-	    tail = prec;
-	delete list;
-	length--;
+	if (isempty())
+		return false;
+	temp = stack_element[top];
+	top--;
 	return true;
 }
 
-template<class element>
-bool linked_list<element>::modify_element(int k, elementdata& temp)
+bool stack::get_top(element& temp)
 {
-	element* p;
-	if (!get_element(k, p))
-	    return false;
-	list->data = temp;
+	if (isempty())
+		return false;
+	temp = stack_element[top];
 	return true;
-}
-
-template<class element>
-linked_list<element>::~linked_list()
-{
-	list = head;
-	while (list != NULL)
-	{
-		head = list->next;
-		delete list;
-		list = head;
-	}
-	delete head; 
 }
