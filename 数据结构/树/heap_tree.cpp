@@ -4,6 +4,16 @@ using namespace std;
 
 typedef int htelement;
 
+/*
+判断空
+判断满
+构造最大堆
+插入结点
+删除堆顶
+排序
+遍历输出 
+*/
+
 template<class htelement>
 class heap_tree
 {
