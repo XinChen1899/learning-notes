@@ -74,7 +74,7 @@ bool heap_tree<htelement>::insert_htnode(htelement& newvalue)
 	if (isfull())
 		return false;
 	int i = ++heapsize - 1;
-	while (1 != 0 && newvalue > heap[(i - 1) / 2])
+	while (i != 0 && newvalue > heap[(i - 1) / 2])
 	{
 		heap[i] = heap[(i - 1) / 2];
 		i = (i - 1) / 2;
