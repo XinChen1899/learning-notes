@@ -5,16 +5,10 @@ using namespace std;
 
 //typedef btelement* element;
 
-struct element //需要取消stack.h内部对element的定义 
-{
-	btelement* ptr;
-	bool check;
-};
-
 
 /*
 0、构建树
-1、前中后序遍历，递归与非递归
+1、前中后序遍历(递归)
 2、是否空
 3、求高度
 4、求叶子数
