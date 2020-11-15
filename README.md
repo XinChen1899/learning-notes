@@ -4,6 +4,7 @@
 * [八皇后问题](https://github.com/chenxin18307382228/learning-notes/blob/master/eight_queen.cpp)
 * [学生信息管理系统](https://github.com/chenxin18307382228/Simple-Student-Information-Manager)
 * [Python](https://github.com/XinChen1899/learning-notes/blob/master/Python)
+* [java](https://github.com/XinChen1899/learning-notes/tree/master/java)
 <br><br>
 ## [数据结构](https://github.com/chenxin18307382228/learning-notes/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
 * 线性表
@@ -20,3 +21,5 @@
 * [排序](https://github.com/chenxin18307382228/learning-notes/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F)
 ## [Python](https://github.com/XinChen1899/learning-notes/blob/master/Python)
 * [懂球帝欧洲五大联赛积分榜爬虫](https://github.com/XinChen1899/learning-notes/blob/master/Python/dongqiudi_crawlers.py)
+## [java](https://github.com/XinChen1899/learning-notes/tree/master/java)
+* [JDBC模拟医院挂号系统](https://github.com/XinChen1899/learning-notes/tree/master/java/HospitalAdministrator)
