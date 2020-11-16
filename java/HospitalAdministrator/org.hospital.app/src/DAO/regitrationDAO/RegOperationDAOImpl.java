@@ -52,8 +52,8 @@ public class RegOperationDAOImpl implements OperationDAO<RegistrationData> {
             while(result.next())
             {
                 System.out.println("id:"+result.getString(1)+' '+
-                        "病人编号:"+result.getString(2)+' '+
-                        "部门编号:"+result.getString(3)+' '+
+                        "病人:"+result.getString(2)+' '+
+                        "部门:"+result.getString(3)+' '+
                         "挂号日期:"+new java.util.Date(result.getDate(4).getTime())+' '+
                         "费用:"+result.getInt(5));
             }
@@ -66,22 +66,29 @@ public class RegOperationDAOImpl implements OperationDAO<RegistrationData> {
     }
     public boolean queryDataAll()
     {
-        sql="SELECT * FROM reg_record";
+        sql="SELECT reg_record.id,patient.name,dept.name,reg_time,price "+
+            "FROM reg_record JOIN patient ON patient_id=patient.id JOIN dept ON dept_id=dept.id "+;
         return queryData();
     }
     public boolean queryRegByDate(java.util.Date time)
     {
-        sql="SELECT * FROM reg_record WHERE reg_time=\'"+new java.sql.Date(time.getTime())+'\'';
+        sql="SELECT reg_record.id,patient.name,dept.name,reg_time,price "+
+            "FROM reg_record JOIN patient ON patient_id=patient.id JOIN dept ON dept_id=dept.id "+
+            "WHERE reg_time=\'"+new java.sql.Date(time.getTime())+'\'';
         return queryData();
     }
     public boolean queryRegByPatient(String patientId)
     {
-        sql="SELECT * FROM reg_record WHERE Patient_id="+'\''+patientId+'\'';
+        sql="SELECT reg_record.id,patient.name,dept.name,reg_time,price "+
+            "FROM reg_record JOIN patient ON patient_id=patient.id JOIN dept ON dept_id=dept.id "+
+            "WHERE Patient_id="+'\''+patientId+'\'';
         return queryData();
     }
     public boolean queryRegByDept(String deptId)
     {
-        sql="SELECT * FROM reg_record WHERE dept_id="+'\''+deptId+'\'';
+        sql="SELECT reg_record.id,patient.name,dept.name,reg_time,price "+
+            "FROM reg_record JOIN patient ON patient_id=patient.id JOIN dept ON dept_id=dept.id "+
+            "WHERE dept_id="+'\''+deptId+'\'';
         return queryData();
     }
     public boolean readData(RegistrationData newReg)
