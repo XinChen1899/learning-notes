@@ -45,9 +45,17 @@ class PatientApp implements RegisterOperation<PatientData> {
                 System.out.println("密码错误");
         return false;
     }
-    public boolean newRegistration(String deptId)
+    public boolean newRegistration(String deptId,String date)
     {
-        Date regTime=new Date(System.currentTimeMillis());
+        java.text.SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
+        Date regTime;
+        try{
+            regTime=formatter.parse(date);
+        }
+        catch(java.text.ParseException e){
+            e.getErrorOffset();
+            return false;
+        }
         RegistrationData newReg=new RegistrationData(patient.getId(),deptId,regTime,20);
         return regOperationDAO.insertData(newReg);
     }
@@ -146,8 +154,14 @@ public class PatientRun {
                     DeptOperationDAOImpl.getInstance(conn).queryDataAll();
                     System.out.println("请输入挂号科室编号:");
                     String deptId=reader.next();
+                    System.out.println("日期：\n年：");
+                    String year=reader.next();
+                    System.out.println("月：");
+                    String month=reader.next();
+                    System.out.println("日：");
+                    String day=raeder.next();
                     if(DeptOperationDAOImpl.getInstance(conn).findData(deptId,new DeptData()))
-                        if(app.newRegistration(deptId))
+                        if(app.newRegistration(deptId,year+'-'+month+'-'+day))
                             System.out.println("挂号成功");
                         else
                             System.out.println("抱歉，挂号失败");
