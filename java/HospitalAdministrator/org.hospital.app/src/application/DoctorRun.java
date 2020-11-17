@@ -49,10 +49,19 @@ class DoctorApp implements RegisterOperation<DoctorData> {
     {
         regOperationDAO.queryRegByDept(doctor.getDept_id());
     }
-    public void showPatient() { PatientOperationDAOImpl.getInstance(conn).queryPatientByDept(doctor.getDept_id()); }
-    public void showRegByDate(java.util.Date time)
+    public boolean showPatient() { return PatientOperationDAOImpl.getInstance(conn).queryPatientByDept(doctor.getDept_id()); }
+    public boolean showRegByDate(String date)
     {
-        regOperationDAO.queryRegByDate(time);
+        java.text.SimpleDateFormat formatter=new SimpleDateFirmat("yyyy-MM-dd");
+        Data regTime;
+        try{
+            regTime=formatter.parse(date);
+        }
+        catch(java.text.ParseException e){
+            e.getErrorOffset();
+            return false;
+        }
+        return regOperationDAO.queryRegByDate(regTime);
     }
     public boolean dealReg(String id)
     {
@@ -152,7 +161,13 @@ public class DoctorRun{
                     app.showPatient();
                     break;
                 case 4:
-                    app.showRegByDate(new Date(System.currentTimeMillis()));
+                    System.out,println("年：");
+                    String year=reader.next();
+                    System.out.println("月：");
+                    String month=reader.next();
+                    System.out.println("日：");
+                    String day=reader.next();
+                    app.showRegByDate(year+'-'+month+'-'+day);
                     break;
                 case 5:
                     app.logOut();
