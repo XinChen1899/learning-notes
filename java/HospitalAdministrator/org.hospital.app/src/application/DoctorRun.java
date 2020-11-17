@@ -135,7 +135,7 @@ public class DoctorRun{
         while(true)
         {
             userChoice=0;
-            System.out.println("请选择：1，处理挂号\n2，显示挂号记录\n3，查看所有病人\n" +
+            System.out.println("请选择：\n1，处理挂号\n2，显示挂号记录\n3，查看所有病人\n" +
                     "4，查看指定日期挂号\n5，退出登录\n6，注销账号");
             while(userChoice==0)
             {
