@@ -23,4 +23,4 @@
 * [懂球帝欧洲五大联赛积分榜爬虫](https://github.com/XinChen1899/learning-notes/blob/master/Python/dongqiudi_crawlers.py)
 ## [java](https://github.com/XinChen1899/learning-notes/tree/master/java)
 * [JDBC模拟医院挂号系统](https://github.com/XinChen1899/learning-notes/tree/master/java/HospitalAdministrator)
-* [java web实验:医院挂号管理&微信小程序实验](https://github.com/XinChen1899/javawebTest_hospitalReg)
+* [java web实验:医院挂号管理&微信小程序实验](https://github.com/XinChen1899/JavaWebTest)
