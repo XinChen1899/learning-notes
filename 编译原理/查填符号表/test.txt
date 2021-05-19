@@ -1,0 +1,6 @@
+void main(){
+    int num1 = 1;
+    int num2 = 2;
+    num1 = num1 + num2;
+    printf("%d", num1);
+}

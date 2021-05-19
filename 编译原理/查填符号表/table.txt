@@ -1,0 +1,7 @@
+0        void
+1        main
+2        int
+3        num1
+4        num2
+5        printf
+6        d

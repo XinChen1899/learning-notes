@@ -1,0 +1,92 @@
+#include"stdio.h"
+#include"time.h"
+#include"stdlib.h"
+
+int result[15];
+int num;
+
+void functionA(){
+    num = 0;
+    for(int cockNum = 0; cockNum < 100; cockNum++){
+        for(int henNum = 0; henNum < 100; henNum++){
+            for(int chickenNum = 0; chickenNum < 100; chickenNum++){
+                if((cockNum + henNum + chickenNum) == 100 && (cockNum*5 + henNum*3 + chickenNum/3) == 100 && chickenNum%3 == 0){
+                    result[num] = cockNum;
+                    result[num+1] = henNum;
+                    result[num+2] = chickenNum;
+                    num = num + 3;
+                }
+            }
+        }
+    }
+}
+
+void functionB(){
+    num = 0;
+    for(int cockNum = 0; cockNum < 21; cockNum++){
+        for(int henNum = 0; henNum < 34; henNum++){
+            int chickenNum = 100 - cockNum - henNum;
+            if((cockNum*5 + henNum*3 + chickenNum/3) == 100 && chickenNum%3 == 0){
+                result[num] = cockNum;
+                result[num+1] = henNum;
+                result[num+2] = chickenNum;
+                num = num + 3;
+            }
+        }
+    }
+}
+
+void functionC(){
+    num = 0;
+    for(int cockNum = 0; cockNum < 15; cockNum = cockNum + 4){
+        int henNum = 25 - 7*cockNum/4;
+        int chickenNum = 100 - cockNum - henNum;
+        if(chickenNum%3 == 0){
+            result[num] = cockNum;
+            result[num+1] = henNum;
+            result[num+2] = chickenNum;
+            num = num + 3;
+        }
+    }
+}
+
+void main(){
+    FILE* fp;
+    char str[20];
+    if(!(fp = fopen("outputHDHC.txt", "a+"))){
+        printf("file cannot be opened");
+    }
+    clock_t start, end;
+    
+    start = clock();
+    for(int i = 0; i < 100000; i++){
+        functionA();
+    }
+    end = clock();
+    for(int i = 0; i<num; i = i + 3){
+        fprintf(fp, "A	%dcocks, %dhens, %dchicks\n", result[i], result[i+1], result[i+2]);
+    }
+    fprintf(fp, "A: %fms\n", (float)end - start);
+    
+    start = clock();
+    for(int i = 0; i < 100000; i++){
+        functionB();
+    }
+    end = clock();
+    for(int i = 0; i<num; i = i + 3){
+        fprintf(fp, "B	%dcocks, %dhens, %dchicks\n", result[i], result[i+1], result[i+2]);
+    }
+    fprintf(fp, "B: %fms\n", (float)end - start);
+
+    start = clock();
+    for(int i = 0; i < 100000; i++){
+        functionC();
+    }
+    end = clock();
+    for(int i = 0; i<num; i = i + 3){
+        fprintf(fp, "C	%dcocks, %dhens, %dchicks\n", result[i], result[i+1], result[i+2]);
+    }
+    fprintf(fp, "C: %fms\n\n", (float)end - start);
+
+    fclose(fp);
+}

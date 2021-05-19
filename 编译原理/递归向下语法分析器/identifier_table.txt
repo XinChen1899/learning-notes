@@ -1,0 +1,3 @@
+0		a		identifier
+1		b		identifier
+2		c		identifier

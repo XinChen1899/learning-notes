@@ -1,0 +1,6 @@
+0		a		identifier
+2		*		arithmetic
+3		(		delimiter
+1		b		identifier
+0		+		arithmetic
+2		c		identifier
