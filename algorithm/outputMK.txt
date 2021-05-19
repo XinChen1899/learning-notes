@@ -1,0 +1,59 @@
+the monkey king is number 6
+time A : 333.000000ms
+the monkey king is number 2
+time A : 66.000000ms
+the monkey king is number 6
+time A : 179.000000ms
+the monkey king is number 16
+time A : 156.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 197.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 53.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 229.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 107.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 65.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 83.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 65.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 54.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 68.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 57.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 117.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 58.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 130.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 78.000000ms
+m = 20, n = 17
+the monkey king is number -1280000754
+time B : 0.000000ms
+m = 20, n = 17
+the monkey king is number 16
+time A : 260.000000ms
+m = 20, n = 17
+the monkey king is number -1550789452
+time B : 0.000000ms
