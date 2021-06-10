@@ -1,0 +1,3 @@
+0		1		digit
+6		=		arithmetic
+1		2		digit
