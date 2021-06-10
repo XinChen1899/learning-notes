@@ -1,0 +1,10 @@
+0		a		identifier
+6		=		arithmetic
+0		12		digit
+1		;		delimiter
+1		b		identifier
+1		10		digit
+2		c		identifier
+2		*		arithmetic
+0		+		arithmetic
+3		/		arithmetic

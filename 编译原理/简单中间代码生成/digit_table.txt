@@ -1,0 +1,2 @@
+0		12		digit
+1		10		digit
